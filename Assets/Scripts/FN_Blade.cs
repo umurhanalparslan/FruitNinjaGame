@@ -3,7 +3,7 @@ namespace OUAPP
     using UnityEngine;
 
     // Blade sinifi, oyuncunun fare hareketi ile meyveleri kesmesini saglar
-    public class Blade : MonoBehaviour
+    public class FN_Blade : MonoBehaviour
     {
         public float sliceForce = 5f; // Kesme gucu
         public float minSliceVelocity = 0.01f; // Minimum kesme hizi
@@ -37,6 +37,7 @@ namespace OUAPP
             if (Input.GetMouseButtonDown(0))
             {
                 StartSlice();
+                FN_AudioManager.instance.Play("CutSound"); // Kılıcı her salladığında ses çalsın
             }
             else if (Input.GetMouseButtonUp(0))
             {
