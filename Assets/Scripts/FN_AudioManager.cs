@@ -1,22 +1,21 @@
 namespace OUAPP
 {
+
     using System;
     using UnityEngine;
     using UnityEngine.Audio;
 
-    // FN_AudioManager sinifi, oyun icerisindeki sesleri yonetir
     public class FN_AudioManager : MonoBehaviour
     {
         public static FN_AudioManager instance;
 
         [Header("Sounds")]
-        public FN_Sound[] Sounds; // Oyun icinde calinacak seslerin listesi
+        public FN_Sound[] Sounds;
 
         private void Awake()
         {
             instance = this;
 
-            // Tum sesleri AudioSource olarak ayarla
             foreach (FN_Sound s in Sounds)
             {
                 s.Source = gameObject.AddComponent<AudioSource>();
@@ -29,23 +28,20 @@ namespace OUAPP
             }
         }
 
-        // Belirli isimdeki sesi cal
-        public void Play(string Name)
+        public void Play(String Name)
         {
             FN_Sound s = Array.Find(Sounds, Sound => Sound.Name == Name);
             if (s == null) return;
             s.Source.Play();
         }
 
-        // Belirli isimdeki sesi durdur
-        public void Stop(string Name)
+        public void Stop(String Name)
         {
             FN_Sound s = Array.Find(Sounds, Sound => Sound.Name == Name);
             if (s == null) return;
             s.Source.Stop();
         }
 
-        // Efekt sesini aktif et
         public void SoundEffectsActive(string Name)
         {
             FN_Sound s = Array.Find(Sounds, Sound => Sound.Name == Name);
@@ -53,7 +49,6 @@ namespace OUAPP
             s.Source.mute = false;
         }
 
-        // Efekt sesini pasif yap
         public void SoundEffectsPassive(string Name)
         {
             FN_Sound s = Array.Find(Sounds, Sound => Sound.Name == Name);
